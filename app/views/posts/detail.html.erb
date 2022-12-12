@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body{
+        font-family: Roboto, Arial, sans-serif;
+    }
+    #inline {
+        width:25%;
+        height:20px;
+        display:flex;
+    } 
+    .userImage {
+        margin:10px;
+    } 
+    .userInfo {
+        width:50%;
+        height:80px;
+        margin:10px;
+        font-weight: 600;
+        font-size: 18px;
+        color: #422800;
+    }
+    .descrip {
+        background-color: FloralWhite;
+        border: 1px solid black;
+        padding-top: 20px;
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-left: 30px;
+        font-size: 17px;  
+        box-shadow: #422800 4px 4px 0 0; 
+    }
+    .outset_butt {
+        display: inline-block;
+    }
+    .btn-like{
+        font-size: 18px;
+        text-align: center;
+        display: inline-block;
+
+    }
+
+    .middle{
+       /* background-color: LemonChiffon; */
+    }
+
+    * {box-sizing: border-box;}
+
+    .open-button {
+        border: none;
+        color: white;
+        padding: 9px 9px;
+        text-align: center;
+        display: inline-block;
+        font-size: 8px;
+        margin: 1px 3px;
+        cursor: pointer;
+        border-radius: 30%;
+    }
+
+    .form-popup {
+        font-family: Roboto, Arial, sans-serif;
+        display: none;
+        top: 10%;
+        left: 41%;
+        position: absolute;
+    }
+
+    .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: FloralWhite;
+        font-family: Roboto, Arial, sans-serif;
+         border: 2px solid #422800;
+        border-radius: 30px;
+    }
+
+    .form-container input[type=text], .form-container input[type=report] {
+        font-family: Roboto, Arial, sans-serif;
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        border: 2px solid #422800;
+        border-radius: 30px;
+    }
+
+    .form-container input[type=text]:focus, .form-container input[type=report]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    .form-container .btn {
+        font-family: Roboto, Arial, sans-serif;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+
+    .form-container .cancel {
+         background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+
+    .form-container .btn:hover, .open-button:hover {
+        opacity: 1;
+    }
+
+
+    .button-74 {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+
+    .button-74:hover {
+    background-position: 100%;
+    background-color: #fff;
+    animation: pulse 1s infinite;
+    transition: .3s;
+    }
+    @keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(.9);
+    }
+        100% {
+        transform: scale(1);
+    }
+    }
+
+    .button-74:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
+
+    @media (min-width: 768px) {
+    .button-74 {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+    }
+
+    .testbutt:hover {
+    background-position: 100%;
+    background-color: #fff;
+    animation: pulse 1s infinite;
+    transition: .3s;
+    }
+    @keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(.9);
+    }
+        100% {
+        transform: scale(1);
+    }
+
+    }
+
+    .alert1 {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+
+
+    
+</style>
+</head>
+
+<body>
+ <div class = 'row'></div>
+<p></p>
+<div class = 'row'></div>
+
+<% if current_user.present? %>
+    <div id="inline"> 
+        <div class="userImage">
+            <%= link_to user_path(@user) do %>
+                <%= image_tag @user.image_url, style:  'height: auto; width: 75px; box-shadow: #422800 4px 4px 0 0; '%>
+            <% end %>
+        </div> 
+        <div class="userInfo">
+            <p>
+                <%= @user.username %>
+                <%= @post.created_at.strftime("%m/%d/%Y") %>
+            </p>
+        </div> 
+    </div> 
+
+
+<div class='row'>
+    <div class='col'></div>
+        <div class='col'>
+        <div class ='middle'>
+            <div class='row justify-content-center'>
+                <%= image_tag((@post.image_url), class: 'img w-150 mx-auto', style: 'width:550px; height:auto; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;')%>
+            </div>
+                <div class='row'> 
+                    <div class='col-50'>
+
+                <div class = 'row'></div>
+                <p></p>
+                <div class = 'row'></div>
+
+
+                    <% dislike = current_user.dislikes.find_by(post: @post) %>
+                    <% like = current_user.likes.find_by(post: @post) %>
+                            <% if like.nil? %>
+                                <% if dislike.nil? %>
+                                    <div class = "btn-like">
+                                        <form action="/likes" method="post">
+                                            <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                            <input type ="hidden" name="like[post_id]" value="<%= @post.id %>">
+                                            <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAACs0lEQVRIie2VW0iTYRjHf9/2zSNhztBMKw9piSKaZJGFkIHddNHBDpBFQgZBoGDhsMIu7MIQhC4MhW6kA9SFEHghESWEEaZQauSh5Tykzbk187Q53y42ZbrEfS696g8vvM97+P943iP8l6dyAIOr5G8EsAU4DqQAeuDYegOtQIirng80rifMD5gBVK44BjCuJzAD6HCL/YFZJQaq1YcsUQnw2C0OBX4q9PBaV4FOINit7SjQvFbDeziXR7jKLFABSMANnNcgQQzqwsSwbo8YLs3YGR3yYlfs5ioxWhonBnVh3kAkt/ps74Pz9+O3bioDME5MD0UU1IfLGnVzZHhwbNPTswO747XJwJaFCQlZtfR+N3uYqlSSkNXSoM0+/wioBKb+BhTieWE7kL7YmVfLneKsqdtFB4Nk2fvtdjgEnd1GS/bJJ+8s1lktcATn6fY4NCnLJ98tOaQIBqBWS6QmhW82dRZbgAHg5kLfcieNIudVpFKJvMz0qGrcnkCl10Kp/BrqTkQA0RsFZHhsIhcY8x4ofAN2fjWlAV3eA+fmfQL26sejcT4Y3gJ9S/Fbv0WLogwdPvHo6jHJKMpQWnXEihICevRmGfjiPVC9dqJhyEpwoMYBWFYCepyQ8WnbmoFv3xtIjAv94d62FChEy/JJMQdq7Nd0TbR3jCqCTU3bqXr4gdzsuFcrAW0f9eN1uG6eyTozp5Ik+8VTSekBAfLQ6cIGduyr4cL1l1TXtdL4uo+u7jFM5ml+T9qWgN60GMg584z9e6McZUWHy92B7htUgfNH9wOQJOxCUAncEq2FGrZpL7V9Grnc3jGa2fZ5RO7rt2AYsjJqnMRmn1+EBgVqSE4McxScSx25kp+mk6Mr61cCeiWhLw9AntyOWhWJkPxc6/SLOcxIkpkof7Mklfv2WvxL/QEHDOqHdMidBQAAAABJRU5ErkJggg==" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                <% else %>
+                                    <div class = "btn-like">
+                                            <form action="<%= dislike_path(dislike) %>" method="post">
+                                                <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                                <input type ="hidden" name="_method" value="DELETE">
+                                                <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAACs0lEQVRIie2VW0iTYRjHf9/2zSNhztBMKw9piSKaZJGFkIHddNHBDpBFQgZBoGDhsMIu7MIQhC4MhW6kA9SFEHghESWEEaZQauSh5Tykzbk187Q53y42ZbrEfS696g8vvM97+P943iP8l6dyAIOr5G8EsAU4DqQAeuDYegOtQIirng80rifMD5gBVK44BjCuJzAD6HCL/YFZJQaq1YcsUQnw2C0OBX4q9PBaV4FOINit7SjQvFbDeziXR7jKLFABSMANnNcgQQzqwsSwbo8YLs3YGR3yYlfs5ioxWhonBnVh3kAkt/ps74Pz9+O3bioDME5MD0UU1IfLGnVzZHhwbNPTswO747XJwJaFCQlZtfR+N3uYqlSSkNXSoM0+/wioBKb+BhTieWE7kL7YmVfLneKsqdtFB4Nk2fvtdjgEnd1GS/bJJ+8s1lktcATn6fY4NCnLJ98tOaQIBqBWS6QmhW82dRZbgAHg5kLfcieNIudVpFKJvMz0qGrcnkCl10Kp/BrqTkQA0RsFZHhsIhcY8x4ofAN2fjWlAV3eA+fmfQL26sejcT4Y3gJ9S/Fbv0WLogwdPvHo6jHJKMpQWnXEihICevRmGfjiPVC9dqJhyEpwoMYBWFYCepyQ8WnbmoFv3xtIjAv94d62FChEy/JJMQdq7Nd0TbR3jCqCTU3bqXr4gdzsuFcrAW0f9eN1uG6eyTozp5Ik+8VTSekBAfLQ6cIGduyr4cL1l1TXtdL4uo+u7jFM5ml+T9qWgN60GMg584z9e6McZUWHy92B7htUgfNH9wOQJOxCUAncEq2FGrZpL7V9Grnc3jGa2fZ5RO7rt2AYsjJqnMRmn1+EBgVqSE4McxScSx25kp+mk6Mr61cCeiWhLw9AntyOWhWJkPxc6/SLOcxIkpkof7Mklfv2WvxL/QEHDOqHdMidBQAAAABJRU5ErkJggg==" />
+                                                </button>
+                                            </form>
+                                        </div>
+                                <% end %>
+                                <%else%>
+                                    <div class = "btn-like">
+                                        <form action="<%= like_path(like) %>" method="post">
+                                            <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                            <input type ="hidden" name="_method" value="DELETE">
+                                            <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAACs0lEQVRIie2VW0iTYRjHf9/2zSNhztBMKw9piSKaZJGFkIHddNHBDpBFQgZBoGDhsMIu7MIQhC4MhW6kA9SFEHghESWEEaZQauSh5Tykzbk187Q53y42ZbrEfS696g8vvM97+P943iP8l6dyAIOr5G8EsAU4DqQAeuDYegOtQIirng80rifMD5gBVK44BjCuJzAD6HCL/YFZJQaq1YcsUQnw2C0OBX4q9PBaV4FOINit7SjQvFbDeziXR7jKLFABSMANnNcgQQzqwsSwbo8YLs3YGR3yYlfs5ioxWhonBnVh3kAkt/ps74Pz9+O3bioDME5MD0UU1IfLGnVzZHhwbNPTswO747XJwJaFCQlZtfR+N3uYqlSSkNXSoM0+/wioBKb+BhTieWE7kL7YmVfLneKsqdtFB4Nk2fvtdjgEnd1GS/bJJ+8s1lktcATn6fY4NCnLJ98tOaQIBqBWS6QmhW82dRZbgAHg5kLfcieNIudVpFKJvMz0qGrcnkCl10Kp/BrqTkQA0RsFZHhsIhcY8x4ofAN2fjWlAV3eA+fmfQL26sejcT4Y3gJ9S/Fbv0WLogwdPvHo6jHJKMpQWnXEihICevRmGfjiPVC9dqJhyEpwoMYBWFYCepyQ8WnbmoFv3xtIjAv94d62FChEy/JJMQdq7Nd0TbR3jCqCTU3bqXr4gdzsuFcrAW0f9eN1uG6eyTozp5Ik+8VTSekBAfLQ6cIGduyr4cL1l1TXtdL4uo+u7jFM5ml+T9qWgN60GMg584z9e6McZUWHy92B7htUgfNH9wOQJOxCUAncEq2FGrZpL7V9Grnc3jGa2fZ5RO7rt2AYsjJqnMRmn1+EBgVqSE4McxScSx25kp+mk6Mr61cCeiWhLw9AntyOWhWJkPxc6/SLOcxIkpkof7Mklfv2WvxL/QEHDOqHdMidBQAAAABJRU5ErkJggg==" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                <%end%>
+                                    <%= @post.likes.count %>
+                                    <% if dislike.nil? %>
+                                        <% if like.nil? %>
+                                            <div class = "btn-like">
+                                                <form action="/dislikes" method="post">
+                                                    <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                                    <input type ="hidden" name="dislike[post_id]" value="<%= @post.id %>">
+                                                    <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAAChElEQVRIie2WW0gUURiAvzM7s26boLYaa2AKXTQwQ5AEk6SI6Gr7sgUFkmCrQkEPQQTRhYIIgqiXaHtJoh5Sgl5T0VLKKKGI3DB6CS01b5C33XXm9JDuurVX13qIPhiYmf/8/3dmOOefgX8dkchgeb8+gxSZh9Bt6NJAEYN41S/iyK2xxchzgRbAC0hgeO7+yNx1XIdJEb5Ui+bRNKUeUKM9YUuxPbO3s6pSWFNUm7jkdsqzrk5x2V0uG11xz3rGr9P96RtnHrzyjX6f8bzvGysBZufjSuBEiIquakeN1azWIXECsJzyuE1zWDQTWwrstJ7fa85eYd1Uu2PD44VxBUCedqUZUqpmk6KFZKclqguimRSuHN5My7v+PbKppihEiEZp+OkuXghQsiYL3ZB09AyeCxUKmR42w5ScEGBXcQ5dH4f2y7YLalAYiYQ2TXh2F+fw5G2fmZH+/NhCPXnh9sJVdHgGQCprYwv9yQtTLRpevw4CI7ZwJnlhAONnIwkIzSYFn26EDppcQuGYfB0UGvRtXZ3Nta63odKp5D1ev46qCF3Uuv0w3+t6x1/e2FnWdrL5xbaLz7rx6Qa2ZRaQYDWrDIxPYU+3xuuYBZ4Cbya9fl/l1ea8WUNmzgcDC186nSYKMg4hKQM5gaAXFE/W9YZqR2nugTt1FSvDVbdVNzA64Y0k9wHtwDHgc4gwCnYh6Plw82D7enu649cc4XQjG11fQRwXztuPYhX77fMRhgEpuZt/4qGUTbX5IPchKQSpgjIEnGJ6ep2oureUSww7kdesXEpRPIUTEkbf+LFJJ8H2kKzQATxPskZEFr66NOAoMAhs/FPCYYI/S9NAK1AUNeM/f4MfFSzWdPl+ExAAAAAASUVORK5CYII=" />
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        <% else %>
+                                            <div class = "btn-like">
+                                                <form action="<%= like_path(like) %>" method="post">
+                                                <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                                <input type ="hidden" name="_method" value="DELETE">
+                                                <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAAChElEQVRIie2WW0gUURiAvzM7s26boLYaa2AKXTQwQ5AEk6SI6Gr7sgUFkmCrQkEPQQTRhYIIgqiXaHtJoh5Sgl5T0VLKKKGI3DB6CS01b5C33XXm9JDuurVX13qIPhiYmf/8/3dmOOefgX8dkchgeb8+gxSZh9Bt6NJAEYN41S/iyK2xxchzgRbAC0hgeO7+yNx1XIdJEb5Ui+bRNKUeUKM9YUuxPbO3s6pSWFNUm7jkdsqzrk5x2V0uG11xz3rGr9P96RtnHrzyjX6f8bzvGysBZufjSuBEiIquakeN1azWIXECsJzyuE1zWDQTWwrstJ7fa85eYd1Uu2PD44VxBUCedqUZUqpmk6KFZKclqguimRSuHN5My7v+PbKppihEiEZp+OkuXghQsiYL3ZB09AyeCxUKmR42w5ScEGBXcQ5dH4f2y7YLalAYiYQ2TXh2F+fw5G2fmZH+/NhCPXnh9sJVdHgGQCprYwv9yQtTLRpevw4CI7ZwJnlhAONnIwkIzSYFn26EDppcQuGYfB0UGvRtXZ3Nta63odKp5D1ev46qCF3Uuv0w3+t6x1/e2FnWdrL5xbaLz7rx6Qa2ZRaQYDWrDIxPYU+3xuuYBZ4Cbya9fl/l1ea8WUNmzgcDC186nSYKMg4hKQM5gaAXFE/W9YZqR2nugTt1FSvDVbdVNzA64Y0k9wHtwDHgc4gwCnYh6Plw82D7enu649cc4XQjG11fQRwXztuPYhX77fMRhgEpuZt/4qGUTbX5IPchKQSpgjIEnGJ6ep2oureUSww7kdesXEpRPIUTEkbf+LFJJ8H2kKzQATxPskZEFr66NOAoMAhs/FPCYYI/S9NAK1AUNeM/f4MfFSzWdPl+ExAAAAAASUVORK5CYII=" />
+                                                </button>
+                                                </form>
+                                            </div>
+                                        <%end%> 
+                                    <%else%>
+                                        <div class = "btn-like">
+                                            <form action="<%= dislike_path(dislike) %>" method="post">
+                                                <input type ="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                                <input type ="hidden" name="_method" value="DELETE">
+                                                <button class = "testbutt" type="submit" style="border: 0; background: transparent">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QA/wD/AP+gvaeTAAAChElEQVRIie2WW0gUURiAvzM7s26boLYaa2AKXTQwQ5AEk6SI6Gr7sgUFkmCrQkEPQQTRhYIIgqiXaHtJoh5Sgl5T0VLKKKGI3DB6CS01b5C33XXm9JDuurVX13qIPhiYmf/8/3dmOOefgX8dkchgeb8+gxSZh9Bt6NJAEYN41S/iyK2xxchzgRbAC0hgeO7+yNx1XIdJEb5Ui+bRNKUeUKM9YUuxPbO3s6pSWFNUm7jkdsqzrk5x2V0uG11xz3rGr9P96RtnHrzyjX6f8bzvGysBZufjSuBEiIquakeN1azWIXECsJzyuE1zWDQTWwrstJ7fa85eYd1Uu2PD44VxBUCedqUZUqpmk6KFZKclqguimRSuHN5My7v+PbKppihEiEZp+OkuXghQsiYL3ZB09AyeCxUKmR42w5ScEGBXcQ5dH4f2y7YLalAYiYQ2TXh2F+fw5G2fmZH+/NhCPXnh9sJVdHgGQCprYwv9yQtTLRpevw4CI7ZwJnlhAONnIwkIzSYFn26EDppcQuGYfB0UGvRtXZ3Nta63odKp5D1ev46qCF3Uuv0w3+t6x1/e2FnWdrL5xbaLz7rx6Qa2ZRaQYDWrDIxPYU+3xuuYBZ4Cbya9fl/l1ea8WUNmzgcDC186nSYKMg4hKQM5gaAXFE/W9YZqR2nugTt1FSvDVbdVNzA64Y0k9wHtwDHgc4gwCnYh6Plw82D7enu649cc4XQjG11fQRwXztuPYhX77fMRhgEpuZt/4qGUTbX5IPchKQSpgjIEnGJ6ep2oureUSww7kdesXEpRPIUTEkbf+LFJJ8H2kKzQATxPskZEFr66NOAoMAhs/FPCYYI/S9NAK1AUNeM/f4MfFSzWdPl+ExAAAAAASUVORK5CYII=" />
+                                                </button>
+                                            </form>
+                                        </div>
+                                <%end%>
+                                    <%= @post.dislikes.count %>
+                                    <div class = "btn-like">
+                                    <%= link_to post_comments_path(@user, @post) do %>
+                                        <button class="button-74" role="button">Comments: <%= @post.comments.count %></button>
+                                        <% end %>
+                                    </div>
+                                    <div class="btn-like" >
+                                        <button class="button-74" role="button">Share</button>
+                                    </div>
+                                    <div class = 'btn-like'>
+                                        <% if user_signed_in? && current_user.id != @user.id && !(current_user.saved_posts.include? current_user.saved_posts.where(user: @user, post: @post).first)%>
+                                            <%= link_to "Save Post", save_post_url(@user, @post), class: 'button-74' %>
+                                        <% end %>
+                                    </div>
+                              
+
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+
+
+                    <strong style="font-size:35px;padding:15px;"> <%= @post.name %> </strong>
+                    <br>
+
+                    <!-- wing-rating system, 1-5 wings! will display pictures of wings -->
+                     <% if @post.rating == 5.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 4.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 4.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 3.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 3.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 2.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 2.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 1.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 1.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 0.5%>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 0.0%>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+
+                
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+                    <!-- post variables, users input from creating a post -->
+                    <div class = "descrip" >
+                    
+                        <%if @post.restaurant%>
+                        <b>Resturant: </b><%= @post.restaurant %> <b>|</b>
+                        <%end%>
+                        <%if @post.area %>
+                        <b>Area: </b><%= @post.area %> <b>|</b>
+                        <%end%>
+                        <% if @post.waiting_time%>
+                        <b>Wait Time: </b><%= @post.waiting_time %> min.
+                        <%end%>
+                        <br>
+                        <% if @post.price %>
+                        <b>Price: </b><i>$<%= @post.price %>0</i>
+                        <%end%>
+                       <br>
+                       <%if @post.dish%>
+                        <b>Dish: </b><%= @post.dish%> <b>|</b>
+                        <% end %>
+                        <%if @post.sauce %>
+                        <b>Sauce: </b><%= @post.sauce %>
+                        <% end %>
+                       <br>
+                       <br>
+                       <%= @post.review %>
+
+                    </div>
+
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+                    <!-- report button, opens report form and user can submit -->
+                    <div class = btn-like>
+                        <button class="button-74" onclick="openForm()">Report</button>
+                    </div>
+                    <!-- adding edit for if user is viewing their own post -->
+                    <div class = 'btn-like'>
+                        <% if user_signed_in? && current_user.id == @user.id && !(current_user.saved_posts.include? current_user.saved_posts.where(user: @user, post: @post).first)%>
+                            <%= link_to "Edit Post", edit_post_url(@user, @post), class: 'button-74' %>
+                        <% end %>
+                    </div>   
+
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+                </div> 
+            </div>
+        </div>
+        </div>
+    <div class='col'></div>
+</div>
+<!-- div for report form, at the bottom -->
+<div class="form-popup" id="myForm">
+  <form action="" class="form-container" onsubmit="return confirm('Ready to submit report?');">
+    <h1>Report A Problem</h1>
+        Select an issue:
+        <br>
+        <input type="checkbox" id="User" name="User" value="User">
+        <label for="User">User</label><br>
+        <input type="checkbox" id="Post" name="Post" value="Post">
+        <label for="Post">Post</label><br>
+        <input type="checkbox" id="Website" name="Website" value="Website">
+        <label for="Website">Website</label><br>
+        <input type="checkbox" id="Other" name="Other" value="Other">
+        <label for="Other">Other</label><br>
+
+    <br>
+    Please provide more info:
+    <textarea name="details" rows="10" cols="30"></textarea>
+    
+    <button type="button" class="btn" onclick="confirm('Ready to submit report?')&&closeForm()&&alert()">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+</body>
+
+<!-- if the user is not signed in, lite version of full -->
+<%else%>
+<body>
+    <div id="inline"> 
+        <div class="userImage">
+            <%= link_to user_path(@user) do %>
+                <%= image_tag @user.image_url, :style => "height: auto; width: 75px"%>
+            <% end %>
+        </div> 
+        <div class="userInfo">
+            <p>
+                <%= @user.username %>
+                <%= @post.created_at.strftime("%m/%d/%Y") %>
+            </p>
+        </div> 
+    </div> 
+
+<div class='row'>
+    <div class='col'></div>
+        <div class='col'>
+        <div class ='middle'>
+            <div class='row justify-content-center'>
+                <%= image_tag((@post.image_url), class: 'img w-150 shadow-lg d-block mx-auto', style: 'outline-style: outset; width:600px; height:auto;')%>
+            </div>
+                <div class='row'> 
+                    <div class='col'>
+
+                <div class = 'row'></div>
+                <p></p>
+                <div class = 'row'></div>
+
+
+
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+
+                    <strong style="font-size:30px;padding:10px;"> <%= @post.name %> </strong>
+                    <div id = "align">
+                        <p> </p>
+                    <div id = "div1" >
+                        <% if @post.rating == 5.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 4.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 4.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 3.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 3.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 2.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 2.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 1.5%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 1.0%>
+                        <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 0.5%>
+                        <%= image_tag 'rating_2.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    <% if @post.rating == 0.0%>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <%= image_tag 'rating_1.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                        <br>
+                    <% end %>
+                    </div>
+                    <div id = "extend"><div id = "div2" style = "font-size:18px;padding-left:400px;float:left">$<%= @post.price %></div></div>
+                    </div>
+                
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+
+                    <div class = "descrip" >
+                        <%= @post.review %>
+                    </div>
+
+                    <div class = 'row'></div>
+                        <p></p>
+                    <div class = 'row'></div>
+
+                </div> 
+            </div>
+        </div>
+        </div>
+    <div class='col'></div>
+</div>
+
+<div class='row justify-content-center'>
+You are not singed
+</div>
+</body>
+<%end%>
+</html>

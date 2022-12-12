@@ -1,0 +1,12 @@
+<p>
+  <%= link_to 'Back to Post', posts_path(@post), class: 'btn btn-secondary',style: 'margin-top:20px'%>
+</p>
+
+<h1 style = "margin-bottom:40px"> Your Comments To the Post</h1></p>
+
+<%= bootstrap_form_with model: @comment, url: post_comments_path, method: :post, local: true do |t| %>
+
+        <%= t.text_area :description, label: "Leave Your Comment Here:" %>
+        <%= t.submit "Confirm My Comments", class: "btn btn-primary" %>
+
+<% end %>

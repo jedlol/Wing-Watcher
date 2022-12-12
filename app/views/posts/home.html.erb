@@ -1,0 +1,67 @@
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<style>
+    #inline
+    {
+        width:25%;
+        height:100px;
+        display:flex;
+        float: left
+    } 
+    .one
+    {
+        width:20%;
+        height:100px;
+        margin:10px
+    } 
+    .two
+    {
+        width:50%;
+        height:100px;
+        margin:10px
+    }
+</style>
+
+<body>
+    <% @posts.each do |p| %>
+        <div id="inline"> 
+            <div class="one">
+                <a>
+                    <%= link_to user_path(p.user) do %>
+                        <%= image_tag p.user.image_url, :class => "img-fluid float-left", :style => "height: 7vh; width: 5vw"%>
+                    <% end %>
+                </a>
+            </div> 
+            <div class="two">
+                <p><b style="font-size:17px"><%= p.user.username %></b></p>
+                <p><%= p.created_at.strftime("%m/%d/%Y") %></p>
+            </div> 
+        </div> 
+
+        <div class='row'>
+            <div class='col'></div>
+            <div class='col'>
+                <div class='row justify-content-center'>
+                    <a>
+                    <% if p.user.image_url != nil%>
+                        <%= link_to detail_post_path(p.user, p) do %>
+                            <%= image_tag p.image_url, class: 'w-250 shadow-lg d-block mx-auto', style: 'max-width: 750px; max-height: 750px'%>
+                        <% end %>
+                        <%else%>
+                    <%= image_tag 'rating_0.png', class: 'w-100', style: 'max-width: 2.5rem;' %>
+                    <%end%>
+                    </a>
+                </div>
+            <div class='row'> 
+            <div class='col'>
+                <strong style="font-size:20px"><%= p.name %></strong>
+                <p><i style="font-size:18px">Rating: <%= p.rating %></i></p>
+            </div>  
+            </div>
+            </div>
+            <div class='col'></div>
+        </div>
+    <% end %>
+</body>

@@ -1,0 +1,52 @@
+<h1>Tell us about your experience</h1>
+
+<%= bootstrap_form_with model: @post, url: detail_post_path(@post), method: :patch, local: true do |f| %>
+	<div class="row">
+		<div class="col">
+			<%= f.number_field :rating, label: "Rating*" %>
+			<%= f.text_field :restaurant, label: "Name of the restaurant*"  %>
+			<%= f.text_area :review, label: "Review"  %>
+		</div>
+		<div class="col">
+			<%= f.file_field :image, label: "Upload your photo*"  %>
+			<%= f.number_field :price, label: "Price"  %>
+			<%= f.number_field :waiting_time, label: "Estimated Waiting Time (minutes)"  %>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col">
+			<%= f.label 'Name of the Sauce*' %>
+			<%= f.radio_button :sauce, 'Classic/Buffalo', label: 'Classic/Buffalo' %>
+			<%= f.radio_button :sauce, 'Dry Rub', label: 'Dry Rub' %>
+			<%= f.radio_button :sauce, 'Honey BBQ', label: 'Honey BBQ' %>
+			<%= f.radio_button :sauce, 'Lemon Pepper', label: 'Lemon Pepper' %>
+			<%= f.radio_button :sauce, 'Garlic Parm', label: 'Garlic Parm' %>
+			<%= f.radio_button :sauce, 'Other', label: 'Other' %>
+		</div>
+		<div class="col">
+			<%= f.label 'Dish' %>
+			<%= f.radio_button :dish, 'Drums', label: 'Drums' %>
+			<%= f.radio_button :dish, 'Flats', label: 'Flats' %>
+			<%= f.radio_button :dish, 'Drums and Flats', label: 'Drums and Flats' %>
+			<%= f.radio_button :dish, 'Whole Wings', label: 'Whole Wings' %>
+			<%= f.radio_button :dish, 'Other', label: 'Other' %>
+		</div>
+		<div class="col">
+			<%= f.label 'Area' %>
+			<%= f.radio_button :area, 'Memphis Downtown', label: 'Memphis Downtown' %>
+			<%= f.radio_button :area, 'Germentown', label: 'Germentown' %>
+			<%= f.radio_button :area, 'Collierville', label: 'Collierville' %>
+			<%= f.radio_button :area, 'Fisherville', label: 'Fisherville' %>
+			<%= f.radio_button :area, 'Bartlett', label: 'Bartlett' %>
+			<%= f.radio_button :area, 'Southaven', label: 'Southaven' %>
+			<%= f.radio_button :area, 'Other', label: 'Other' %>
+		</div>
+	</div>
+
+	<%= f.submit "Confirm my post"%>
+
+<% end %>
+
+<div></div>
+<%= link_to "Delete My Post", user_path(@user), class: "btn btn-danger", style: "margin-top: 1vh" %>

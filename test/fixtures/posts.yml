@@ -1,0 +1,81 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :bigint           not null, primary key
+#  area         :string
+#  date         :date
+#  dish         :string
+#  image        :string
+#  name         :string
+#  price        :float
+#  rating       :float
+#  restaurant   :string
+#  review       :string
+#  sauce        :string
+#  waiting_time :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint
+#
+# Indexes
+#
+#  index_posts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+<<<<<<< HEAD
+#  image        :string
+=======
+>>>>>>> origin/Jacque_signin_newpost_newcomment
+#  name         :string
+#  price        :float
+#  rating       :float
+#  restaurant   :string
+#  review       :string
+#  sauce        :string
+#  waiting_time :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint
+#
+# Indexes
+#
+#  index_posts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+one:
+  name: MyString
+  rating: 1.5
+  description: MyString
+  price: 1.5
+  date: 2022-04-11
+  review: MyString
+  price: 1.5
+  date: 2022-04-12
+  sauce: MyString
+  dish: MyString
+  area: MyString
+  waiting_time: 1
+  restaurant: MyString
+
+two:
+  name: MyString
+  rating: 1.5
+  description: MyString
+  price: 1.5
+  date: 2022-04-11
+  review: MyString
+  price: 1.5
+  date: 2022-04-12
+  sauce: MyString
+  dish: MyString
+  area: MyString
+  waiting_time: 1
+  restaurant: MyString
