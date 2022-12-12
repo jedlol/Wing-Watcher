@@ -1,0 +1,37 @@
+<h1 style = "margin-top:20px;margin-bottom:40px"> Create A New Wing Watcher's Post</h1>
+
+<%= bootstrap_form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
+
+	<div class="row">
+		<div class="col">
+            <%= f.text_field :name, label: "Name of the review"  %>
+        	<%= f.text_field :restaurant, label: "Name of the restaurant*"  %>
+			<%= f.number_field :rating, label: "Rating*" %>
+			<%= f.text_area :review, label: "Review"  %>
+
+		</div>	
+        <div class="col">
+            <%= f.file_field :image, label: "Upload your photo*"  %>
+            <%= f.number_field :price, label: "Price"  %>
+			<%= f.number_field :waiting_time, label: "Estimated Waiting Time (minutes)"   %>
+        </div>
+    </div> 
+
+	<div class="row">
+		<div class="col">  
+            <%= f.select :sauce, ['Classic/Buffalo', 'Honey BBQ', 'Dry Rub', 'Lemon Pepper', 'Garlic Parm', 'Others'] %>
+        </div> 
+
+		<div class="col">  
+            <%= f.select :dish, ['Drums', 'Flats', 'Flats and Drums', 'Whole Wings', 'Others'] %>
+       </div> 
+
+		<div class="col">  
+            <%= f.select :area, ['Memphis Downtown', 'Germentown', 'Collierville', 'Fisherville', 'Bartlett', 'Southaven', 'Others'] %>
+        </div> 
+    </div>
+
+    <%= f.submit "Confirm My Post", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Cancel", home_path(@post), class: "btn btn-danger", style: "margin-top: 1vh" %>

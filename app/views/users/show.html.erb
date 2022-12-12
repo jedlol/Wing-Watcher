@@ -1,0 +1,156 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+    #inline
+    {
+        width:25%;
+        height:100px;
+        display:flex;
+        float: left
+    } 
+    .one
+    {
+        width:20%;
+        height:100px;
+        margin:10px
+    } 
+    .two
+    {
+        width:50%;
+        height:100px;
+        margin:10px
+    }
+</style>
+
+<div class="d-flex">
+  <div class="p-2"><%= image_tag @user.image_url, :class => "img-fluid float-left", :style => "height: 7vh; width: 5vw"%></div>
+  <div class="p-2"><b style="font-size:20px"><%= @user.username %></b></div>
+	<% if user_signed_in? && current_user.id == @user.id %>
+  		<div class="ml-auto p-2"><%= link_to "Settings",  settings_path(@user), :class => "btn btn-secondary"%></div>
+	<% else %>
+		<div class="ml-auto p-2"></div></div>
+	<% end %>
+</div>
+<div class="d-flex">
+  <div class="p-2"><%= @user.description %></div>
+</div>
+
+<div class="row justify-content-center">
+	<p class="col "></p>
+	<p class="col "></p>
+	<p onclick = "s(false)" class="col btn btn-primary" >My Posts</p>
+	<p onclick = "s(true)" class="col btn btn-primary" >Saved Posts</p>
+	<p class="col"></p>
+	<p class="col"></p>
+</div>
+
+<div id='posts'>
+<% @posts.each do |p| %>
+	<div id="inline"> 
+            <div class="one">
+                <a>
+                    <%= link_to user_path(p.user) do %>
+                        <%= image_tag p.user.image_url, :class => "img-fluid float-left", :style => "height: 7vh; width: 5vw"%>
+                    <% end %>
+                </a>
+            </div> 
+            <div class="two">
+                <p><b style="font-size:17px"><%= p.user.username %></b></p>
+                <p><%= p.created_at.strftime("%m/%d/%Y") %></p>
+            </div> 
+        </div> 
+
+	<div class='row '>
+		<div class='col'></div>
+		<div class='col'>
+			<div class='row justify-content-center'>
+				<a>
+					<%= link_to detail_post_path(p.user, p) do %>
+						<%= image_tag p.image_url, class: 'w-250 shadow-lg d-block mx-auto', style: 'max-width: 750px; max-height: 750px'%>
+					<% end %>
+				</a>
+			</div>
+		<div class='row'> 
+		<div class='col'>
+			<strong style="font-size:20px"><%= p.name%></strong>
+			<p><i style="font-size:18px">Rating: <%= p.rating 
+			%></i></p>
+		</div>  
+		</div>
+		</div>
+		<div class='col'></div>
+	</div>
+<% end %>
+</div>
+
+<div id='saved_posts'>
+<% @saved_posts.each do |p| %>
+	<div id="inline" style='visibility: visible'> 
+		<div class="one" style='visibility: visible'>
+			<a>
+                    <%= link_to user_path(p.user) do %>
+                        <%= image_tag p.user.image_url, :class => "img-fluid float-left", :style => "height: 7vh; width: 5vw"%>
+                    <% end %>
+            </a>
+		</div> 
+		<div class="two" style='visibility: visible'>
+				<p><b style="font-size:17px"><%= p.user.username %></b></p>
+                <p><%= p.created_at.strftime("%m/%d/%Y") %></p>
+		</div> 
+	</div> 
+
+	<div class='row ' style='visibility: visible'>
+		<div class='col'></div>
+		<div class='col'>
+			<div class='row justify-content-center' style='visibility: visible'>
+				<a>
+					<%= link_to detail_post_path(p.user, p) do %>
+						<%= image_tag p.post.image_url, class: 'w-250 shadow-lg d-block mx-auto', style: 'max-width: 750px; max-height: 750px'%>
+					<% end %>
+				</a>
+			</div>
+		<div class='row'> 
+		<div class='col' style='visibility: visible'>
+			<strong style="font-size:20px"><%= p.post.name%></strong>
+			<p><i style="font-size:18px">Rating: <%= p.post.rating 
+			%></i></p>
+		</div>  
+		</div>
+		</div>
+		<div class='col'></div>
+	</div>
+	<% end  %>
+</div>
+
+<script type="text/javascript">
+
+	function hide (elements) {
+		elements = elements.length ? elements : [elements];
+		for (var index = 0; index < elements.length; index++) {
+			elements[index].style.display = 'none';
+		}
+	}
+	function show (elements) {
+		elements = elements.length ? elements : [elements];
+		for (var index = 0; index < elements.length; index++) {
+			elements[index].style.display = '';
+		}
+	}
+	function s(saved) {
+		console.log(document.getElementById("posts").style.display);
+		if (saved) {
+			hide(document.getElementById("posts"))
+			show(document.getElementById("saved_posts"))
+		}else{
+			show(document.getElementById("posts"))
+			hide(document.getElementById("saved_posts"))
+		}
+	}
+	window.onload = function() {
+		hide(document.getElementById("saved_posts"))
+	};
+	$( document ).ready(function() {
+		hide(document.getElementById("saved_posts"))
+	});
+</script>

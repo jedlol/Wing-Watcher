@@ -1,0 +1,94 @@
+<%# <link rel = "stylesheet" href = "style.css">
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+<div class = "share-btn-container">
+    <a href = "#" class="facebook-btn">
+        <i class="fab fa-facebook"></i>
+    </a>
+
+    <a href = "#" class="twitter-btn">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+    <a href = "#" class="instagram-btn">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+   <a href = "#" class="pinteres-btn">
+        <i class="fab fa-pinterest"></i>
+    </a>
+
+    <a href = "#" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</div>  %>
+
+
+<p>
+  <%= link_to 'Back to Post', detail_post_path(@user, @post), class: 'btn btn-secondary',style: 'margin-top:20px'%>
+</p>
+
+<h1 style = "margin-bottom:40px"> Comments To Post</h1></p>
+
+<%= bootstrap_form_with model: @comment, url: post_comments_path, method: :post, local: true do |t| %>
+
+    <style>
+        #inline
+        {
+            width:25%;
+            height:20px;
+            /* display:flex; */
+            /* float: left */
+        } 
+        .one
+        {
+            width:20%; 
+            height:100px;
+            margin:10px
+        } 
+        .two
+        {
+            width:100%;
+            height:20px;
+            margin:10px;
+            font-size:12px;
+            line-height: 30%
+            
+        }
+
+        .three
+        {
+            width:100%;
+            height:50px;
+            position:relative;
+            left:150px;
+            margin:10px;
+            font-size:18px
+
+        }
+    </style>
+
+<% @comments.each do |t| %>
+
+     <div id="inline"> 
+        <div class="two">
+            <p><%= t.user.username %></p>
+            <p><%= t.created_at.strftime("%m/%d/%Y") %></p>
+        </div> 
+    </div> 
+
+        <div class='col'>
+            <div class='three'>
+
+               <i><p> <%= t.description %></i></p> 
+            </div> 
+        </div>  
+<% end %>   
+
+
+
+        <td> <%= link_to "I want to comment", new_post_comment_path, class: "btn btn-primary", style: 'margin-top:40px'%> </td> 
+        <p><button type="button" class="btn btn-danger" style = "margin-top:10px">Cancel</button></p>
+   
+<%end%>
