@@ -1,5 +1,10 @@
 # README
 
+--
+This is a re-upload of a project WING-WATCHERS I worked on, reuploading becuase original project page is private, Special thanks to - Vue Lee, Noah Ferrah, Jacque Lynn for contributing to this project!.
+ link to original project -- https://github.com/jedlol/Wing-Watcher.git
+--
+
 Steps to run code:
 1. Clone current git repository.
 2. cd into pepperoni-s22
